@@ -1,0 +1,14 @@
+EC2 IAM Instance Profile
+
+docker-compose.yml
+AWS EBS Env's Docker running on Aazon Linux V2 looks for 
+docker-compose.yml file for a production build.
+
+docker-compose-dev.yml 
+docker compose file for easy development build with test runners 
+
+Dockerfile 
+for general production build not specific for aws 
+
+Dockerfile.dev 
+Docker build file for building development image

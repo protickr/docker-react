@@ -13,3 +13,29 @@ script:
 # travis will watch for outputs of each of this commands and if any of the output returns non 0 value then 
 # it is considered as error and our build failed
   # - docker run protickr/docker-react npm run test -- --coverage
+
+deploy: 
+  # TravisCI is preconfigured to deploy our app to different providers such AWS EBS, DigitalOcean etc.
+  provider: elasticbeanstalk 
+  
+  # aws region in which we created the AWS EBS app
+  region: "ap-southeast-2"  
+  
+  # EBS application name
+  app: "docker-react" 
+  
+  # the environment is where our application runs
+  env: "Docker-react-env" 
+  
+  # travis takes all the source code in our repository and zip them all up and upload them to a S3 bucket
+  bucket_name: "elasticbeanstalk-ap-southeast-2-460084874789"
+
+  # the same bucket will be used for multiple beanstalk application created in the same region
+  path: 'docker-react'
+
+  # trigger build only when commit is pushed to master
+  on: 
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
