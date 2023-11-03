@@ -1,12 +1,17 @@
-sudo: required # we need super user level access to execute this build
+# we need super user level access to execute this build
+sudo: required 
 services: 
   - docker
 
-before_install: # contains a series of commands that gets executed before our test runs
+# contains a series of commands that gets executed before our test runs
+before_install: 
   - docker build -t protickr/docker-react -f Dockerfile.dev .
 
-script: # list the commands as to what to do with the build and how to run this build
+script: 
+  - docker run -e CI=true protickr/docker-react npm run test
+
+# list the commands as to what to do with the build and how to run this build
 # travis will watch for outputs of each of this commands and if any of the output returns non 0 value then 
 # it is considered as error and our build failed
   # - docker run protickr/docker-react npm run test -- --coverage
-  - docker run -e CI=true protickr/docker-react npm run test
+  
